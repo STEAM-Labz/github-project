@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Project Setup Guide | STEAM-Labz</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #1a5b8e;
+            --third-color: #007d8c;
+            --light-color: #f5f5f5;
+            --dark-color: #333333;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #e05a25;
+        }
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #124a77;
+        }
+        .text-primary {
+            color: var(--primary-color);
+        }
+        .text-secondary {
+            color: var(--secondary-color);
+        }
+        .bg-primary {
+            background-color: var(--primary-color);
+        }
+        .bg-secondary {
+            background-color: var(--secondary-color);
+        }
+        .bg-third {
+            background-color: var(--third-color);
+        }
+        .border-primary {
+            border-color: var(--primary-color);
+        }
+        .border-secondary {
+            border-color: var(--secondary-color);
+        }
+        pre {
+            overflow-x: auto;
+            background-color: #f4f4f4;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .toc-item {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: all 0.2s;
+            display: block;
+            padding: 0.5rem 0;
+        }
+        .toc-item:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        .section-card {
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .step-number {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .note-box {
+            border-left: 4px solid var(--third-color);
+            background-color: #e6f7fa;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="text-3xl font-bold text-secondary mr-2">STEAM</div>
+                    <div class="text-3xl font-bold text-primary">-Labz</div>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-800">GitHub Project Setup Guide</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Introduction -->
+        <section class="mb-12">
+            <div class="bg-white rounded-lg p-6 shadow-md">
+                <h2 class="text-2xl font-bold mb-4 text-secondary">Introduction</h2>
+                <p class="mb-4">
+                    Welcome to the STEAM-Labz GitHub project setup guide! This document provides comprehensive 
+                    instructions for setting up version control, managing contributor access, and maintaining 
+                    the development lifecycle for STEAM-Labz projects. Following these guidelines will help ensure 
+                    consistency across our repositories and make collaboration smoother for everyone involved.
+                </p>
+                <p class="mb-4">
+                    STEAM-Labz is a community-driven initiative focused on open-source development, knowledge sharing, 
+                    and innovation in Science, Technology, Engineering, Arts, and Mathematics. Our GitHub repositories 
+                    serve as the central hub for collaboration and development of the STEAM-Labz platform and its related projects.
+                </p>
+                <div class="note-box p-4 rounded-md">
+                    <p class="flex items-center">
+                        <i class="fas fa-info-circle text-third mr-2"></i>
+                        <strong>Note:</strong> This guide assumes basic familiarity with Git and GitHub. If you're new to these tools,
+                        consider reviewing GitHub's <a href="https://docs.github.com/en/get-started" class="text-secondary underline" target="_blank">Getting Started</a> documentation first.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Table of Contents -->
+        <section class="mb-12">
+            <div class="bg-white rounded-lg p-6 shadow-md">
+                <h2 class="text-2xl font-bold mb-4 text-secondary">Table of Contents</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <a href="#repository-structure" class="toc-item">1. Repository Structure and Organization</a>
+                        <a href="#branching-strategy" class="toc-item">2. Branching Strategy Guidelines</a>
+                        <a href="#pull-request" class="toc-item">3. Pull Request and Code Review Workflow</a>
+                        <a href="#issue-templates" class="toc-item">4. Issue Templates and Project Boards Setup</a>
+                    </div>
+                    <div>
+                        <a href="#documentation" class="toc-item">5. Documentation Standards</a>
+                        <a href="#new-contributors" class="toc-item">6. Step-by-Step Guide for New Contributors</a>
+                        <a href="#ci-cd" class="toc-item">7. Continuous Integration and Deployment Setup</a>
+                        <a href="#security" class="toc-item">8. Security Best Practices</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. Repository Structure and Organization -->
+        <section id="repository-structure" class="mb-12">
+            <div class="bg-white rounded-lg p-6 shadow-md section-card">
+                <h2 class="text-2xl font-bold mb-4 text-secondary">1. Repository Structure and Organization</h2>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Main Repositories</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Repository</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Description</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Primary Technologies</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">steam-labz-website</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Main website and platform</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">HTML, CSS, JavaScript, Node.js</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">project-labz-api</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Backend API services</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Node.js, Express, MongoDB</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">stream-labz-client</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Video streaming frontend</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">React, Cloudflare Stream</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">steam-labz-docs</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Documentation website</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Docusaurus, Markdown</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">steam-labz-projects</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Featured projects and templates</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Various</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Standard Directory Structure</h3>
+                <p class="mb-4">Each repository should maintain a consistent directory structure to help contributors navigate and understand the codebase:</p>
+                
+                <pre><code>project-root/
+├── .github/                 # GitHub specific files
+│   ├── ISSUE_TEMPLATE/      # Issue templates
+│   ├── workflows/           # GitHub Actions workflows
+│   └── PULL_REQUEST_TEMPLATE.md
+├── docs/                    # Documentation files
+│   ├── api/                 # API documentation
+│   ├── contributing/        # Contribution guidelines
+│   └── development/         # Development guides
+├── src/                     # Source code
+│   ├── assets/              # Static assets
+│   ├── components/          # Reusable components
+│   ├── pages/               # Main pages
+│   ├── services/            # Service layers
+│   └── utils/               # Utility functions
+├── tests/                   # Test files
+│   ├── unit/                # Unit tests
+│   ├── integration/         # Integration tests
+│   └── e2e/                 # End-to-end tests
+├── .editorconfig            # Editor configuration
+├── .gitignore               # Git ignore file
+├── package.json             # Package dependencies
+├── README.md                # Project overview
+└── LICENSE                  # License information</code></pre>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Naming Conventions</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Element</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Convention</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Example</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">Repositories</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">kebab-case, prefixed with platform</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">steam-labz-website, project-labz-api</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">Files</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">kebab-case for general files, PascalCase for components</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">user-service.js, ProjectCard.jsx</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">Folders</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">kebab-case, descriptive names</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">user-authentication, project-templates</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">Branches</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">prefix/description-of-change</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">feature/add-login-page, fix/navbar-responsive</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Branching Strategy Guidelines -->
+        <section id="branching-strategy" class="mb-12">
+            <div class="bg-white rounded-lg p-6 shadow-md section-card">
+                <h2 class="text-2xl font-bold mb-4 text-secondary">2. Branching Strategy Guidelines</h2>
+                
+                <p class="mb-4">
+                    STEAM-Labz follows a simplified GitFlow branching strategy to maintain clean, organized repositories.
+                    This approach helps us manage releases and collaborate effectively across multiple contributors.
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Main Branches</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-secondary mb-2">main</h4>
+                        <p class="text-sm">
+                            The stable, production-ready branch. All code here should be tested and ready for deployment.
+                            Direct commits to main are not allowed.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-secondary mb-2">develop</h4>
+                        <p class="text-sm">
+                            The main development branch. Feature branches are merged here after review.
+                            This branch should be in a relatively stable state.
+                        </p>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Supporting Branches</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Branch Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Naming Convention</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Purpose</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Branch From</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Merge To</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">Feature</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">feature/description</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">New features and enhancements</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">develop</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">develop</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">Bugfix</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">fix/description</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Bug fixes for development</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">develop</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">develop</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">Hotfix</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">hotfix/description</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Urgent fixes for production</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">main</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">main and develop</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">Release</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">release/vX.Y.Z</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Preparing for release</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">develop</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">main and develop</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">Documentation</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">docs/description</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Documentation updates</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">develop or main</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">develop or main</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Workflow Visualization</h3>
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-center mb-4">
+                            <div class="h-12 w-12 rounded-full bg-secondary flex items-center justify-center text-white font-bold">main</div>
+                            <div class="h-1 w-24 bg-gray-300"></div>
+                            <div class="h-12 w-12 rounded-full bg-secondary flex items-center justify-center text-white font-bold">main</div>
+                            <div class="h-1 w-24 bg-gray-300"></div>
+                            <div class="h-12 w-12 rounded-full bg-secondary flex items-center justify-center text-white font-bold">main</div>
+                        </div>
+                        <div class="relative mb-4">
+                            <div class="h-1 w-12 bg-gray-300 transform rotate-45 origin-bottom-left absolute left-12 -top-8"></div>
+                            <div class="h-1 w-48 bg-gray-300 mb-2"></div>
+                            <div class="flex items-center">
+                                <div class="h-12 w-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xs">hotfix</div>
+                                <div class="h-1 w-24 bg-gray-300"></div>
+                                <div class="h-12 w-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xs">hotfix</div>
+                            </div>
+                            <div class="h-1 w-12 bg-gray-300 transform -rotate-45 origin-bottom-right absolute right-12 -top-8"></div>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="h-12 w-12 rounded-full bg-third flex items-center justify-center text-white font-bold">dev</div>
+                            <div class="h-1 w-24 bg-gray-300"></div>
+                            <div class="h-12 w-12 rounded-full bg-third flex items-center justify-center text-white font-bold">dev</div>
+                            <div class="h-1 w-24 bg-gray-300"></div>
+                            <div class="h-12 w-12 rounded-full bg-third flex items-center justify-center text-white font-bold">dev</div>
+                        </div>
+                        <div class="relative mb-4">
+                            <div class="h-1 w-12 bg-gray-300 transform rotate-45 origin-bottom-left absolute left-12 -top-8"></div>
+                            <div class="h-1 w-48 bg-gray-300 mb-2"></div>
+                            <div class="flex items-center">
+                                <div class="h-12 w-12 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xs">feature</div>
+                                <div class="h-1 w-24 bg-gray-300"></div>
+                                <div class="h-12 w-12 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xs">feature</div>
+                            </div>
+                            <div class="h-1 w-12 bg-gray-300 transform -rotate-45 origin-bottom-right absolute right-12 -top-8"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Branch Lifecycle Guidelines</h3>
+                <ol class="list-decimal list-inside space-y-2 ml-4">
+                    <li class="text-gray-700">
+                        <span class="font-medium">Create branches from the appropriate source</span> - Feature branches from develop, hotfixes from main.
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Keep branches focused</span> - Each branch should address a single feature, bugfix, or specific change.
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Update regularly</span> - Pull changes from the source branch regularly to minimize merge conflicts.
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Delete branches after merging</span> - To keep the repository clean and manageable.
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Never push directly to main or develop</span> - Always use pull requests for changes to these branches.
+                    </li>
+                </ol>
+                
+                <div class="note-box p-4 rounded-md mt-6">
+                    <p class="flex items-center">
+                        <i class="fas fa-lightbulb text-third mr-2"></i>
+                        <strong>Tip:</strong> Rebase your feature branch on develop before creating a pull request to ensure a clean commit history.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Pull Request and Code Review Workflow -->
+        <section id="pull-request" class="mb-12">
+            <div class="bg-white rounded-lg p-6 shadow-md section-card">
+                <h2 class="text-2xl font-bold mb-4 text-secondary">3. Pull Request and Code Review Workflow</h2>
+                
+                <p class="mb-4">
+                    Pull requests (PRs) are the primary way we review and integrate code changes into our projects. 
+                    They provide a platform for discussion, feedback, and improvement before code is merged.
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Creating a Pull Request</h3>
+                <div class="space-y-4 mb-6">
+                    <div class="flex">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Prepare your branch</h4>
+                            <p class="text-gray-600">
+                                Ensure your branch is up-to-date with the latest changes from the target branch (usually develop).
+                            </p>
+                            <pre><code>git checkout develop
+git pull
+git checkout your-branch
+git rebase develop</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Push your branch</h4>
+                            <p class="text-gray-600">
+                                Push your branch to the remote repository.
+                            </p>
+                            <pre><code>git push origin your-branch</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Create the PR</h4>
+                            <p class="text-gray-600">
+                                Go to the GitHub repository and create a new PR by comparing your branch with the target branch.
+                            </p>
+                            <ul class="list-disc list-inside mt-2 ml-4 text-gray-600 text-sm">
+                                <li>Use the PR template to provide all necessary information</li>
+                                <li>Add a clear, descriptive title that summarizes the change</li>
+                                <li>Link any related issues using keywords like "Closes #123" or "Relates to #456"</li>
+                                <li>Add appropriate labels (e.g., "bug", "enhancement", "documentation")</li>
+                                <li>Request reviewers who are familiar with the codebase</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">PR Template</h3>
+                <pre><code># Description
+
+Please include a summary of the change and which issue is fixed. Include relevant 
+motivation and context. List any dependencies that are required for this change.
+
+Fixes # (issue)
+
+## Type of change
+
+Please delete options that are not relevant.
+
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] This change requires a documentation update
+
+## How Has This Been Tested?
+
+Please describe the tests that you ran to verify your changes. Provide instructions 
+so we can reproduce. Please also list any relevant details for your test configuration.
+
+## Checklist:
+
+- [ ] My code follows the style guidelines of this project
+- [ ] I have performed a self-review of my own code
+- [ ] I have commented my code, particularly in hard-to-understand areas
+- [ ] I have made corresponding changes to the documentation
+- [ ] My changes generate no new warnings
+- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] New and existing unit tests pass locally with my changes
+- [ ] Any dependent changes have been merged and published in downstream modules
+</code></pre>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Code Review Process</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-secondary mb-2">For Reviewers</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>Review code within 2 business days</li>
+                            <li>Check code quality, style, and functionality</li>
+                            <li>Verify tests are included and pass</li>
+                            <li>Ensure documentation is updated</li>
+                            <li>Be constructive and specific in feedback</li>
+                            <li>Use GitHub suggestions for small changes</li>
+                            <li>Approve only when all issues are addressed</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-secondary mb-2">For PR Authors</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>Respond to all review comments</li>
+                            <li>Make requested changes promptly</li>
+                            <li>Explain any disagreements respectfully</li>
+                            <li>Resolve conversations when addressed</li>
+                            <li>Request re-review after making changes</li>
+                            <li>Notify reviewers if PR is no longer needed</li>
+                            <li>Don't take feedback personally</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Merging Guidelines</h3>
+                <ol class="list-decimal list-inside space-y-2 ml-4">
+                    <li class="text-gray-700">
+                        <span class="font-medium">All CI checks must pass</span> - Including tests, linting, and build processes.
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Minimum of one approval is required</span> - Two or more for changes to critical components.
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">All review comments must be resolved</span> - Ensure all feedback has been addressed.
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Keep the commit history clean</span> - Consider squashing commits if there are many small changes.
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Update the PR description with final changes</span> - If scope changed during review.
+                    </li>
+                </ol>
+                
+                <div class="note-box p-4 rounded-md mt-6">
+                    <p class="flex items-center">
+                        <i class="fas fa-info-circle text-third mr-2"></i>
+                        <strong>Note:</strong> We use the "Squash and merge" option for most PRs to maintain a clean, linear history in our main branches.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Issue Templates and Project Boards Setup -->
+        <section id="issue-templates" class="mb-12">
+            <div class="bg-white rounded-lg p-6 shadow-md section-card">
+                <h2 class="text-2xl font-bold mb-4 text-secondary">4. Issue Templates and Project Boards Setup</h2>
+                
+                <p class="mb-4">
+                    Well-structured issues and project boards help us track work, prioritize tasks, and maintain visibility 
+                    across the project. STEAM-Labz uses GitHub Issues and Projects for managing all work items.
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Issue Templates</h3>
+                <p class="mb-4">We provide the following issue templates to ensure consistency and completeness:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-bug text-red-500 mr-2"></i>
+                            <h4 class="font-semibold text-gray-700">Bug Report</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">For reporting bugs or unexpected behavior.</p>
+                        <ul class="list-disc list-inside text-xs text-gray-600">
+                            <li>Description of the bug</li>
+                            <li>Steps to reproduce</li>
+                            <li>Expected behavior</li>
+                            <li>Screenshots/logs</li>
+                            <li>Environment details</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                            <h4 class="font-semibold text-gray-700">Feature Request</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">For suggesting new features or enhancements.</p>
+                        <ul class="list-disc list-inside text-xs text-gray-600">
+                            <li>Problem statement</li>
+                            <li>Proposed solution</li>
+                            <li>Alternative solutions</li>
+                            <li>User benefit</li>
+                            <li>Additional context</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-book text-blue-500 mr-2"></i>
+                            <h4 class="font-semibold text-gray-700">Documentation</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">For documentation improvements or additions.</p>
+                        <ul class="list-disc list-inside text-xs text-gray-600">
+                            <li>Documentation area</li>
+                            <li>Current content</li>
+                            <li>Proposed changes</li>
+                            <li>Reason for change</li>
+                            <li>References</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4 class="font-semibold text-gray-700 mt-4">Example Bug Report Template</h4>
+                <pre><code>---
+name: Bug Report
+about: Create a report to help us improve
+title: '[BUG] '
+labels: bug
+assignees: ''
+---
+
+## Description
+A clear and concise description of what the bug is.
+
+## Steps To Reproduce
+1. Go to '...'
+2. Click on '...'
+3. Scroll down to '...'
+4. See error
+
+## Expected Behavior
+A clear and concise description of what you expected to happen.
+
+## Screenshots
+If applicable, add screenshots to help explain your problem.
+
+## Environment
+ - Device: [e.g. Desktop, iPhone X]
+ - OS: [e.g. Windows 10, iOS 14]
+ - Browser: [e.g. Chrome 89, Safari 14]
+ - Version: [e.g. 1.2.0]
+
+## Additional Context
+Add any other context about the problem here.
+</code></pre>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Setting Up Project Boards</h3>
+                <p class="mb-4">STEAM-Labz uses GitHub Projects to manage work. Each repository should have at least one project board with the following structure:</p>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Column</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Purpose</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Automation</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">Backlog</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Items that are identified but not yet ready for work</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">New issues are added automatically</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">Ready</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Issues that are fully specified and ready for development</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Manual move when issue is refined</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">In Progress</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Work that is actively being developed</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Automated when PR linked to issue is opened</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">Review</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Work that is waiting for review or has review in progress</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Automated when PR is ready for review</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">Done</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Work that is completed and merged</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Automated when associated PR is merged</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Project Board Automation</h3>
+                <p class="mb-4">Set up the following automation rules in your GitHub Project:</p>
+                
+                <div class="space-y-4 mb-6">
+                    <div class="flex">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Create a new project</h4>
+                            <p class="text-gray-600">
+                                Navigate to the "Projects" tab in your repository or organization and click "New project".
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Configure project columns</h4>
+                            <p class="text-gray-600">
+                                Create the columns mentioned above: Backlog, Ready, In Progress, Review, and Done.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Set up automation</h4>
+                            <p class="text-gray-600">
+                                For each column, click on the "..." menu and select "Manage automation". Then set up the following rules:
+                            </p>
+                            <ul class="list-disc list-inside mt-2 ml-4 text-gray-600 text-sm">
+                                <li><strong>Backlog:</strong> Add newly created issues</li>
+                                <li><strong>In Progress:</strong> Move issues when linked pull requests are opened</li>
+                                <li><strong>Review:</strong> Move issues when linked pull requests are ready for review</li>
+                                <li><strong>Done:</strong> Move issues when they are closed or when linked pull requests are merged</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Labels</h3>
+                <p class="mb-4">Use the following standardized labels to categorize issues:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-red-100 p-3 rounded-lg border border-red-200">
+                        <span class="inline-block px-2 py-1 rounded bg-red-500 text-white text-xs font-semibold mb-1">bug</span>
+                        <p class="text-xs text-gray-700">Something isn't working as expected</p>
+                    </div>
+                    <div class="bg-green-100 p-3 rounded-lg border border-green-200">
+                        <span class="inline-block px-2 py-1 rounded bg-green-500 text-white text-xs font-semibold mb-1">enhancement</span>
+                        <p class="text-xs text-gray-700">New feature or improvement</p>
+                    </div>
+                    <div class="bg-blue-100 p-3 rounded-lg border border-blue-200">
+                        <span class="inline-block px-2 py-1 rounded bg-blue-500 text-white text-xs font-semibold mb-1">documentation</span>
+                        <p class="text-xs text-gray-700">Documentation improvements</p>
+                    </div>
+                    <div class="bg-yellow-100 p-3 rounded-lg border border-yellow-200">
+                        <span class="inline-block px-2 py-1 rounded bg-yellow-500 text-white text-xs font-semibold mb-1">question</span>
+                        <p class="text-xs text-gray-700">Further information needed</p>
+                    </div>
+                    <div class="bg-purple-100 p-3 rounded-lg border border-purple-200">
+                        <span class="inline-block px-2 py-1 rounded bg-purple-500 text-white text-xs font-semibold mb-1">good first issue</span>
+                        <p class="text-xs text-gray-700">Good for newcomers</p>
+                    </div>
+                    <div class="bg-indigo-100 p-3 rounded-lg border border-indigo-200">
+                        <span class="inline-block px-2 py-1 rounded bg-indigo-500 text-white text-xs font-semibold mb-1">help wanted</span>
+                        <p class="text-xs text-gray-700">Extra attention needed</p>
+                    </div>
+                    <div class="bg-gray-100 p-3 rounded-lg border border-gray-200">
+                        <span class="inline-block px-2 py-1 rounded bg-gray-500 text-white text-xs font-semibold mb-1">duplicate</span>
+                        <p class="text-xs text-gray-700">Already exists</p>
+                    </div>
+                    <div class="bg-pink-100 p-3 rounded-lg border border-pink-200">
+                        <span class="inline-block px-2 py-1 rounded bg-pink-500 text-white text-xs font-semibold mb-1">won't fix</span>
+                        <p class="text-xs text-gray-700">Won't be addressed</p>
+                    </div>
+                </div>
+                
+                <div class="note-box p-4 rounded-md mt-6">
+                    <p class="flex items-center">
+                        <i class="fas fa-lightbulb text-third mr-2"></i>
+                        <strong>Tip:</strong> Consider creating additional labels specific to your project, such as "frontend," "backend," "UX," or priority levels like "priority: high."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Documentation Standards -->
+        <section id="documentation" class="mb-12">
+            <div class="bg-white rounded-lg p-6 shadow-md section-card">
+                <h2 class="text-2xl font-bold mb-4 text-secondary">5. Documentation Standards</h2>
+                
+                <p class="mb-4">
+                    Good documentation is essential for any open-source project. STEAM-Labz follows a documentation-first 
+                    approach, ensuring that all features, APIs, and processes are properly documented.
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Documentation Types</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-secondary mb-2">Code Documentation</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-600">
+                            <li>Inline comments for complex logic</li>
+                            <li>Function and method documentation</li>
+                            <li>Class and module documentation</li>
+                            <li>API endpoint documentation</li>
+                            <li>Type definitions and interfaces</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-secondary mb-2">Project Documentation</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-600">
+                            <li>README.md with project overview</li>
+                            <li>Installation and setup guides</li>
+                            <li>Usage examples and tutorials</li>
+                            <li>Architecture diagrams</li>
+                            <li>Contribution guidelines</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Documentation Format</h3>
+                <p class="mb-4">
+                    We use Markdown for all documentation files. For the main documentation site, we use Docusaurus 
+                    which provides a clean, minimalist style similar to buspirate.com.
+                </p>
+
+                <h4 class="font-semibold text-gray-700 mt-4">README.md Structure</h4>
+                <p class="mb-2">Each repository should have a well-structured README.md with the following sections:</p>
+                
+                <pre><code># Project Name
+
+![STEAM-Labz Logo](logo-url.png)
+
+Brief description of the project and its purpose within the STEAM-Labz ecosystem.
+
+## Features
+
+* Key feature 1
+* Key feature 2
+* Key feature 3
+
+## Getting Started
+
+### Prerequisites
+
+List of software, tools, and dependencies required to run the project.
+
+### Installation
+
+Step-by-step installation instructions.
+
+```bash
+# Example installation commands
+git clone https://github.com/STEAM-Labz/repository-name.git
+cd repository-name
+npm install
+```
+
+## Usage
+
+Examples of how to use the project with code snippets.
+
+## Contributing
+
+Link to CONTRIBUTING.md with guidelines for contributing to the project.
+
+## License
+
+Information about the project's license.
+
+## Contact
+
+How to reach the maintainers.
+</code></pre>
+
+                <h4 class="font-semibold text-gray-700 mt-6">Code Documentation Standards</h4>
+                <p class="mb-2">
+                    For code documentation, we follow JSDoc style for JavaScript/TypeScript projects, and similar 
+                    standards for other languages.
+                </p>
+                
+                <pre><code>/**
+ * Calculates the total score for a user based on their activities
+ * 
+ * @param {string} userId - The ID of the user
+ * @param {Object} options - Configuration options
+ * @param {boolean} options.includeInactive - Whether to include inactive activities
+ * @param {number} options.timeframe - Timeframe in days to consider
+ * @returns {Promise<number>} The calculated score
+ * @throws {Error} If the user doesn't exist or database connection fails
+ * 
+ * @example
+ * // Get score for active activities in the last 30 days
+ * const score = await calculateUserScore('user123', { 
+ *   includeInactive: false,
+ *   timeframe: 30
+ * });
+ */
+async function calculateUserScore(userId, options = {}) {
+    // Function implementation
+}</code></pre>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Documentation Workflow</h3>
+                
+                <div class="space-y-4 mb-6">
+                    <div class="flex">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Document as you develop</h4>
+                            <p class="text-gray-600">
+                                Write documentation alongside code, not as an afterthought. This ensures documentation 
+                                stays up-to-date and accurate.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Review documentation in PRs</h4>
+                            <p class="text-gray-600">
+                                Include documentation changes in pull requests and have them reviewed along with code changes.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Keep the docs site updated</h4>
+                            <p class="text-gray-600">
+                                For significant changes, update the main documentation site (steam-labz-docs) as well.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Automate when possible</h4>
+                            <p class="text-gray-600">
+                                Use tools to generate documentation from code comments and keep API docs up-to-date automatically.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Docusaurus Setup</h3>
+                <p class="mb-4">
+                    For our main documentation site (steam-labz-docs), we use Docusaurus to create a clean, minimalist style 
+                    similar to buspirate.com.
+                </p>
+                
+                <div class="space-y-4 mb-6">
+                    <div class="flex">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Install Docusaurus</h4>
+                            <pre><code>npx @docusaurus/init@latest init steam-labz-docs classic</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Configure theme colors</h4>
+                            <p class="text-gray-600">
+                                Update the docusaurus.config.js file to use STEAM-Labz brand colors.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Organize documentation structure</h4>
+                            <p class="text-gray-600">
+                                Create a clear structure with categories for different aspects of the project:
+                            </p>
+                            <ul class="list-disc list-inside mt-2 ml-4 text-gray-600 text-sm">
+                                <li>Getting Started</li>
+                                <li>User Guides</li>
+                                <li>API Reference</li>
+                                <li>Contributing Guides</li>
+                                <li>Tutorials</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Set up versioning</h4>
+                            <p class="text-gray-600">
+                                Configure documentation versioning to maintain docs for different versions of the project.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="note-box p-4 rounded-md mt-6">
+                    <p class="flex items-center">
+                        <i class="fas fa-book text-third mr-2"></i>
+                        <strong>Documentation tip:</strong> Use diagrams, screenshots, and examples liberally throughout the documentation. Visual aids significantly improve comprehension.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Step-by-Step Guide for New Contributors -->
+        <section id="new-contributors" class="mb-12">
+            <div class="bg-white rounded-lg p-6 shadow-md section-card">
+                <h2 class="text-2xl font-bold mb-4 text-secondary">6. Step-by-Step Guide for New Contributors</h2>
+                
+                <p class="mb-4">
+                    We welcome contributions from everyone! This guide will help new contributors get started with 
+                    the STEAM-Labz projects, regardless of their experience level.
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Getting Started</h3>
+                
+                <div class="space-y-6 mb-8">
+                    <div class="flex">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Understand the project</h4>
+                            <p class="text-gray-600">
+                                Before contributing, take some time to understand STEAM-Labz:
+                            </p>
+                            <ul class="list-disc list-inside mt-2 ml-4 text-gray-600 text-sm">
+                                <li>Read the README.md files</li>
+                                <li>Explore the documentation</li>
+                                <li>Try out the platform</li>
+                                <li>Browse through existing issues and PRs</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Find a task to work on</h4>
+                            <p class="text-gray-600">
+                                Look for issues labeled as "good first issue" or "help wanted" to get started.
+                            </p>
+                            <ul class="list-disc list-inside mt-2 ml-4 text-gray-600 text-sm">
+                                <li>Comment on the issue to express your interest</li>
+                                <li>Ask questions if anything is unclear</li>
+                                <li>Wait for confirmation from a maintainer before starting work</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Set up your development environment</h4>
+                            <pre><code># Fork the repository on GitHub
+# Clone your fork
+git clone https://github.com/your-username/repository-name.git
+cd repository-name
+
+# Add the original repository as upstream
+git remote add upstream https://github.com/STEAM-Labz/repository-name.git
+
+# Install dependencies
+npm install  # or yarn install
+
+# Create a new branch for your work
+git checkout -b feature/your-feature-name</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Make your changes</h4>
+                            <p class="text-gray-600">
+                                Work on your changes, following the project's coding standards and guidelines:
+                            </p>
+                            <ul class="list-disc list-inside mt-2 ml-4 text-gray-600 text-sm">
+                                <li>Write clean, readable code</li>
+                                <li>Include comments where necessary</li>
+                                <li>Write tests for your changes</li>
+                                <li>Update documentation as needed</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">5</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Test your changes</h4>
+                            <pre><code># Run tests
+npm test
+
+# Run linting
+npm run lint
+
+# Fix linting issues automatically (if available)
+npm run lint:fix</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">6</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Commit and push your changes</h4>
+                            <pre><code># Stage your changes
+git add .
+
+# Commit with a descriptive message
+git commit -m "Add feature: brief description of what you did"
+
+# Push to your fork
+git push origin feature/your-feature-name</code></pre>
+                            <p class="text-gray-600 mt-2">
+                                Write good commit messages that explain <em>what</em> you did and <em>why</em> you did it.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">7</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Create a Pull Request</h4>
+                            <p class="text-gray-600">
+                                Go to the GitHub page of your fork and click on "Compare & pull request" for your branch.
+                            </p>
+                            <ul class="list-disc list-inside mt-2 ml-4 text-gray-600 text-sm">
+                                <li>Fill out the PR template completely</li>
+                                <li>Reference any related issues (e.g., "Fixes #123")</li>
+                                <li>Provide clear description of what your changes do</li>
+                                <li>Request reviews from maintainers</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">8</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Address review feedback</h4>
+                            <p class="text-gray-600">
+                                Respond to any feedback on your PR and make requested changes:
+                            </p>
+                            <pre><code># Make additional changes based on feedback
+git add .
+git commit -m "Address review feedback: description of changes"
+git push origin feature/your-feature-name</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Communication Channels</h3>
+                <p class="mb-4">
+                    Join our community to get help and interact with other contributors:
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex items-center">
+                        <i class="fab fa-discord text-indigo-500 text-3xl mr-3"></i>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Discord</h4>
+                            <p class="text-xs text-gray-600">Real-time chat and community discussions</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex items-center">
+                        <i class="fab fa-github text-gray-700 text-3xl mr-3"></i>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">GitHub Discussions</h4>
+                            <p class="text-xs text-gray-600">Long-form discussions and Q&A</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex items-center">
+                        <i class="fa fa-envelope text-red-500 text-3xl mr-3"></i>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Mailing List</h4>
+                            <p class="text-xs text-gray-600">Announcements and important updates</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Contribution Types</h3>
+                <p class="mb-4">
+                    There are many ways to contribute to STEAM-Labz beyond just code:
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <i class="fas fa-code text-secondary text-xl mb-2"></i>
+                        <h4 class="font-semibold text-gray-700">Code</h4>
+                        <p class="text-xs text-gray-600">Implement features, fix bugs, refactor code</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <i class="fas fa-book text-secondary text-xl mb-2"></i>
+                        <h4 class="font-semibold text-gray-700">Documentation</h4>
+                        <p class="text-xs text-gray-600">Write, update, or translate documentation</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <i class="fas fa-paint-brush text-secondary text-xl mb-2"></i>
+                        <h4 class="font-semibold text-gray-700">Design</h4>
+                        <p class="text-xs text-gray-600">Improve UI/UX, create graphics or icons</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <i class="fas fa-bug text-secondary text-xl mb-2"></i>
+                        <h4 class="font-semibold text-gray-700">Testing</h4>
+                        <p class="text-xs text-gray-600">Test features, report bugs, write tests</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <i class="fas fa-globe text-secondary text-xl mb-2"></i>
+                        <h4 class="font-semibold text-gray-700">Translation</h4>
+                        <p class="text-xs text-gray-600">Translate the interface or documentation</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <i class="fas fa-question-circle text-secondary text-xl mb-2"></i>
+                        <h4 class="font-semibold text-gray-700">Support</h4>
+                        <p class="text-xs text-gray-600">Help others in discussions or forums</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <i class="fas fa-bullhorn text-secondary text-xl mb-2"></i>
+                        <h4 class="font-semibold text-gray-700">Advocacy</h4>
+                        <p class="text-xs text-gray-600">Promote STEAM-Labz, give talks</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <i class="fas fa-lightbulb text-secondary text-xl mb-2"></i>
+                        <h4 class="font-semibold text-gray-700">Ideas</h4>
+                        <p class="text-xs text-gray-600">Suggest features or improvements</p>
+                    </div>
+                </div>
+                
+                <div class="note-box p-4 rounded-md mt-6">
+                    <p class="flex items-center">
+                        <i class="fas fa-heart text-red-500 mr-2"></i>
+                        <strong>Remember:</strong> Every contribution, no matter how small, is valuable and appreciated. If you're unsure about anything, don't hesitate to ask for help in our community channels.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Continuous Integration and Deployment Setup -->
+        <section id="ci-cd" class="mb-12">
+            <div class="bg-white rounded-lg p-6 shadow-md section-card">
+                <h2 class="text-2xl font-bold mb-4 text-secondary">7. Continuous Integration and Deployment Setup</h2>
+                
+                <p class="mb-4">
+                    STEAM-Labz uses GitHub Actions for continuous integration and deployment (CI/CD) to automate testing, 
+                    build processes, and deployment to various environments.
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">CI/CD Workflow Overview</h3>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Stage</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Trigger</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Actions</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Environment</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">CI</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Pull request, Push to any branch</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Lint, Test, Build</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">None (verification only)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">CD (Development)</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Push to develop branch</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Build, Deploy</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Development (steam-labz.dev)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">CD (Staging)</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Release branch created</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Build, Deploy, Integration Tests</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Staging (test-labz.com)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary">CD (Production)</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Push to main branch, Release published</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Build, Deploy, Smoke Tests</td>
+                                <td class="px-6 py-4 text-sm text-gray-700">Production (steam-labz.com)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">GitHub Actions Workflow Files</h3>
+                
+                <h4 class="font-semibold text-gray-700 mt-4">CI Workflow (.github/workflows/ci.yml)</h4>
+                <pre><code>name: CI
+
+on:
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ '*' ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Lint
+      run: npm run lint
+    
+    - name: Run tests
+      run: npm test
+    
+    - name: Build
+      run: npm run build</code></pre>
+
+                <h4 class="font-semibold text-gray-700 mt-4">Development Deployment (.github/workflows/deploy-dev.yml)</h4>
+                <pre><code>name: Deploy to Development
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Deploy to Ubuntu Server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.DEV_SERVER_HOST }}
+        username: ${{ secrets.DEV_SERVER_USERNAME }}
+        key: ${{ secrets.DEV_SERVER_KEY }}
+        source: "dist/"
+        target: "/var/www/steam-labz.dev"
+    
+    - name: Restart service
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.DEV_SERVER_HOST }}
+        username: ${{ secrets.DEV_SERVER_USERNAME }}
+        key: ${{ secrets.DEV_SERVER_KEY }}
+        script: |
+          cd /var/www/steam-labz.dev
+          pm2 restart steam-labz-dev</code></pre>
+
+                <h4 class="font-semibold text-gray-700 mt-4">Production Deployment (.github/workflows/deploy-prod.yml)</h4>
+                <pre><code>name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Deploy to Ubuntu Server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.PROD_SERVER_HOST }}
+        username: ${{ secrets.PROD_SERVER_USERNAME }}
+        key: ${{ secrets.PROD_SERVER_KEY }}
+        source: "dist/"
+        target: "/var/www/steam-labz.com"
+    
+    - name: Restart service
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.PROD_SERVER_HOST }}
+        username: ${{ secrets.PROD_SERVER_USERNAME }}
+        key: ${{ secrets.PROD_SERVER_KEY }}
+        script: |
+          cd /var/www/steam-labz.com
+          pm2 restart steam-labz
+
+    - name: Run smoke tests
+      run: npm run test:smoke</code></pre>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Setting Up GitHub Secrets</h3>
+                <p class="mb-4">
+                    For the deployment workflows to work, you need to set up the following secrets in your GitHub repository:
+                </p>
+                
+                <ol class="list-decimal list-inside space-y-2 ml-4">
+                    <li class="text-gray-700">
+                        <span class="font-medium">DEV_SERVER_HOST</span> - The hostname or IP of your development server
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">DEV_SERVER_USERNAME</span> - SSH username for the development server
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">DEV_SERVER_KEY</span> - SSH private key for the development server
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">PROD_SERVER_HOST</span> - The hostname or IP of your production server
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">PROD_SERVER_USERNAME</span> - SSH username for the production server
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">PROD_SERVER_KEY</span> - SSH private key for the production server
+                    </li>
+                </ol>
+
+                <div class="space-y-4 mb-6 mt-6">
+                    <div class="flex">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Go to repository settings</h4>
+                            <p class="text-gray-600">
+                                Navigate to your repository on GitHub, then click on "Settings".
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Access secrets section</h4>
+                            <p class="text-gray-600">
+                                In the left sidebar, click on "Secrets and variables" then "Actions".
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Add secrets</h4>
+                            <p class="text-gray-600">
+                                Click "New repository secret" and add each of the required secrets.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Cloudflare Integration</h3>
+                <p class="mb-4">
+                    STEAM-Labz uses Cloudflare for CDN, security, and streaming services. Here's how to integrate 
+                    Cloudflare with our CI/CD pipeline:
+                </p>
+                
+                <div class="space-y-4 mb-6">
+                    <div class="flex">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Add Cloudflare API token to secrets</h4>
+                            <p class="text-gray-600">
+                                Create a Cloudflare API token with appropriate permissions and add it as CLOUDFLARE_API_TOKEN in GitHub secrets.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Add cache purging to deployment workflow</h4>
+                            <pre><code>- name: Purge Cloudflare cache
+  run: |
+    curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+      -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+      -H "Content-Type: application/json" \
+      --data '{"purge_everything":true}'</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Set up Cloudflare Pages (optional)</h4>
+                            <p class="text-gray-600">
+                                For static sites, consider using Cloudflare Pages for simplified deployment:
+                            </p>
+                            <ol class="list-decimal list-inside ml-4 text-sm text-gray-600">
+                                <li>Connect your GitHub repository to Cloudflare Pages</li>
+                                <li>Configure build settings (build command, output directory)</li>
+                                <li>Set up environment variables</li>
+                                <li>Configure branch deployments (main → production, develop → development)</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="note-box p-4 rounded-md mt-6">
+                    <p class="flex items-center">
+                        <i class="fas fa-info-circle text-third mr-2"></i>
+                        <strong>Note:</strong> Remember that STEAM-Labz uses two Cloudflare accounts: most domains are under <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e687828b8f88a68b9f929380858a899382c885898b">[email&#160;protected]</a>, while production-labz.com is under <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="18797c757176586b6c7d79753574797a62367b7775">[email&#160;protected]</a> with Cloudflare for Startups benefits.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Security Best Practices -->
+        <section id="security" class="mb-12">
+            <div class="bg-white rounded-lg p-6 shadow-md section-card">
+                <h2 class="text-2xl font-bold mb-4 text-secondary">8. Security Best Practices</h2>
+                
+                <p class="mb-4">
+                    Security is a critical aspect of any project. STEAM-Labz follows industry best practices to ensure 
+                    the security of our codebase, infrastructure, and user data.
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Code Security</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-secondary mb-2">Dependency Management</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-600">
+                            <li>Regularly update dependencies to patch security vulnerabilities</li>
+                            <li>Use npm audit or yarn audit to scan for vulnerabilities</li>
+                            <li>Set up Dependabot for automated security updates</li>
+                            <li>Pin dependencies to specific versions to prevent unexpected changes</li>
+                            <li>Avoid using deprecated or unmaintained packages</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-secondary mb-2">Secure Coding Practices</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-600">
+                            <li>Input validation for all user inputs</li>
+                            <li>Output encoding to prevent XSS attacks</li>
+                            <li>Parameterized queries to prevent SQL injection</li>
+                            <li>Proper error handling without exposing sensitive information</li>
+                            <li>Use secure encryption algorithms and hashing functions</li>
+                            <li>Implement proper authentication and authorization checks</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Secret Management</h3>
+                <p class="mb-4">
+                    Never store secrets (API keys, passwords, tokens) in the codebase. Instead:
+                </p>
+                
+                <ol class="list-decimal list-inside space-y-2 ml-4">
+                    <li class="text-gray-700">
+                        <span class="font-medium">Use environment variables</span> for configuration and secrets
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Store secrets in GitHub Secrets</span> for CI/CD workflows
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Use a secrets manager</span> like HashiCorp Vault for production environments
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Rotate secrets regularly</span> and when team members leave
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Use .env files locally</span> but exclude them from version control with .gitignore
+                    </li>
+                </ol>
+
+                <h4 class="font-semibold text-gray-700 mt-6">Example .gitignore entries for secrets</h4>
+                <pre><code># Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Private keys
+*.pem
+*.key
+
+# Configuration files with secrets
+config.json
+secrets.json</code></pre>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Authentication and Authorization</h3>
+                
+                <div class="space-y-4 mb-6">
+                    <div class="flex">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Use secure authentication methods</h4>
+                            <ul class="list-disc list-inside mt-2 ml-4 text-gray-600 text-sm">
+                                <li>OAuth 2.0 for third-party authentication</li>
+                                <li>JWT (JSON Web Tokens) with proper expiration and refresh token rotation</li>
+                                <li>Secure password storage with bcrypt or Argon2</li>
+                                <li>Multi-factor authentication (MFA) for sensitive operations</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Implement proper authorization</h4>
+                            <ul class="list-disc list-inside mt-2 ml-4 text-gray-600 text-sm">
+                                <li>Role-based access control (RBAC)</li>
+                                <li>Principle of least privilege</li>
+                                <li>Authorization checks at both API and UI levels</li>
+                                <li>Resource-based permissions</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Secure session management</h4>
+                            <ul class="list-disc list-inside mt-2 ml-4 text-gray-600 text-sm">
+                                <li>Set secure and httpOnly flags on cookies</li>
+                                <li>Implement proper session timeout</li>
+                                <li>Session invalidation on logout</li>
+                                <li>CSRF protection with tokens</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Infrastructure Security</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-secondary mb-2">Server Security</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-600">
+                            <li>Keep servers updated with security patches</li>
+                            <li>Use firewalls to restrict access</li>
+                            <li>Implement fail2ban to prevent brute force attacks</li>
+                            <li>Disable root SSH access</li>
+                            <li>Use SSH keys instead of passwords</li>
+                            <li>Regular security audits and vulnerability scanning</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-secondary mb-2">Network Security</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-600">
+                            <li>Use HTTPS for all connections</li>
+                            <li>Configure secure TLS settings</li>
+                            <li>Implement proper CORS policies</li>
+                            <li>Set up Content Security Policy (CSP)</li>
+                            <li>Use rate limiting to prevent DoS attacks</li>
+                            <li>Implement network segmentation where appropriate</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Security Testing</h3>
+                <p class="mb-4">
+                    Integrate security testing into your CI/CD pipeline:
+                </p>
+                
+                <div class="space-y-4 mb-6">
+                    <div class="flex">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Static Application Security Testing (SAST)</h4>
+                            <p class="text-gray-600">
+                                Use tools like ESLint with security plugins, SonarQube, or GitHub CodeQL to analyze code for security issues.
+                            </p>
+                            <pre><code>- name: Run CodeQL analysis
+  uses: github/codeql-action/analyze@v2</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Dependency scanning</h4>
+                            <p class="text-gray-600">
+                                Scan dependencies for known vulnerabilities.
+                            </p>
+                            <pre><code>- name: Check for vulnerabilities
+  run: npm audit</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Dynamic Application Security Testing (DAST)</h4>
+                            <p class="text-gray-600">
+                                Use tools like OWASP ZAP to test your application for vulnerabilities during runtime.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Security-focused code reviews</h4>
+                            <p class="text-gray-600">
+                                Include security considerations in all code reviews.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-700">Incident Response</h3>
+                <p class="mb-4">
+                    Have a plan for handling security incidents:
+                </p>
+                
+                <ol class="list-decimal list-inside space-y-2 ml-4">
+                    <li class="text-gray-700">
+                        <span class="font-medium">Create an incident response plan</span> that outlines steps to take when a security issue is identified
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Establish a responsible disclosure policy</span> for reporting security vulnerabilities
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Document lessons learned</span> from any security incidents to prevent similar issues in the future
+                    </li>
+                    <li class="text-gray-700">
+                        <span class="font-medium">Have a communication plan</span> for notifying affected users if necessary
+                    </li>
+                </ol>
+                
+                <div class="note-box p-4 rounded-md mt-6">
+                    <p class="flex items-center">
+                        <i class="fas fa-shield-alt text-third mr-2"></i>
+                        <strong>Security tip:</strong> Security is an ongoing process, not a one-time effort. Stay informed about the latest security threats and best practices by following security blogs, joining security mailing lists, and regularly reviewing your security posture.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="mb-12">
+            <div class="bg-white rounded-lg p-6 shadow-md">
+                <h2 class="text-2xl font-bold mb-4 text-secondary">Conclusion</h2>
+                <p class="mb-4">
+                    This GitHub project setup guide provides a comprehensive framework for contributing to STEAM-Labz projects. 
+                    By following these guidelines, we can maintain high-quality, secure, and consistent codebases across our 
+                    ecosystem.
+                </p>
+                <p class="mb-4">
+                    Remember that these guidelines are not set in stone. As our projects evolve, our processes and standards 
+                    may change as well. We encourage all contributors to provide feedback and suggestions to improve our 
+                    development practices.
+                </p>
+                <p class="mb-4">
+                    Thank you for your interest in contributing to STEAM-Labz! Together, we can create an amazing platform 
+                    for STEAM education and innovation.
+                </p>
+                <div class="flex justify-center mt-8">
+                    <div class="flex items-center">
+                        <div class="text-3xl font-bold text-secondary mr-2">STEAM</div>
+                        <div class="text-3xl font-bold text-primary">-Labz</div>
+                    </div>
+                </div>
+                <p class="text-center text-gray-600 text-sm mt-4">
+                    &copy; 2025 STEAM-Labz. All rights reserved.
+                </p>
+            </div>
+        </section>
+    </main>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
